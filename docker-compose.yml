@@ -21,7 +21,7 @@ services:
       - "3014:3000"
 
     helthcheck:
-      test: ["CMD", "curl", "-f", "hhtp://localhost:3000/tarefas"]
+      test: ["CMD", "curl", "-f", "hhtp://136.248.77.234:3014/tarefas"]
       interval: 30s
       timeout: 10s
       retries: 3
