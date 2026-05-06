@@ -1,29 +1,32 @@
 services:
   db:
     image: postgres:15-alpine
+    container_name: edutbx_db
     environment:
       POSTGRES_USER: fatec_user
       POSTGRES_PASSWORD: fatec_password
       POSTGRES_DB: todolist
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - edutbx_data:/var/lib/postgresql/data
 
   api:
     build: ./backend
+    container_name: edutbx_api
     restart: always  # <-- Se a API cair, o Docker sobe ela de novo até o banco estar pronto.
     environment:
       DB_HOST: db
     depends_on:
       - db
     ports:
-      - "3000:3000"
+      - "3014:3000"
 
   web:
     build: ./frontend
+    container_name: edutbx_web
     ports:
-      - "80:80"
+      - "8014:80"
     depends_on:
       - api
 
 volumes:
-  postgres_data:
+  edutbx_data:
