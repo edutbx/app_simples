@@ -20,7 +20,7 @@ services:
     ports:
       - "3014:3000"
 
-    helthcheck:
+    healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/tarefas"]
       interval: 30s
       timeout: 10s
